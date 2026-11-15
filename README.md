@@ -13,3 +13,12 @@ Where `source_note` says "OpenSea's stored copy" or "OpenSea's stored record", t
 made our copy, so our copy is the one OpenSea had stored, not the original server's own bytes. The 2,460 The Other Avatars records are of this kind: Saatchi's server went offline (its DNS name is gone), which we noticed on 8 November 2026.
 For some images and animations the address given is the token's record address (its metadata on the company's server), because the
 file's own address was not kept when the copy was made; the record names the file.
+
+**Independent timestamps (added 15 November 2026):** `hashes_2026-11.csv.ots` and `README.md.ots` are
+[OpenTimestamps](https://opentimestamps.org) proofs that `hashes_2026-11.csv` and `README.md`, exactly as published in commit
+`dc5c484`, existed no later than Bitcoin block 975844. The README has changed since (this paragraph), so check the proofs against
+the files of that commit: `git show dc5c484:README.md > README.md` and `git show dc5c484:hashes_2026-11.csv > hashes_2026-11.csv`.
+Then, with the OpenTimestamps client (`pip install opentimestamps-client`), `ots verify hashes_2026-11.csv.ots` checks the proof
+against a local Bitcoin node; without one, `ots info hashes_2026-11.csv.ots` shows the path from the file's SHA-256 to the block,
+and its final value, read byte-reversed (the order explorers display), equals the merkle root of block 975844 on any block
+explorer.
